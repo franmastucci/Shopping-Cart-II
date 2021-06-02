@@ -4,10 +4,13 @@ import BtnRender from './BtnRender'
 import {Link} from 'react-router-dom'
 
 
-function ProductItem({product}) {
-
+function ProductItem({product, isAdmin}) {
+   
     return (
         <div className="product_card">
+        {
+            isAdmin && <input type="checkbox" checked = {product.checked} />
+        }
             <img src = {product.images.url} alt = ""></img>
 
             <div className = "product_box">
