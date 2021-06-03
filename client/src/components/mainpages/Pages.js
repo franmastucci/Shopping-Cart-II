@@ -22,10 +22,15 @@ const Pages = () => {
             <Route path="/login" exact component={isLogged ? NotFound : Login} />
             <Route path="/register" exact component={isLogged ? NotFound : Register} />
             <Route path = "/cart" exact component = {Cart}/>
-            <Route path = "*" exact component = {NotFound}/>
+            
             
         </Switch>
     )
 }
 
 export default Pages
+
+
+/** 
+ <Route path = "*" exact component = {NotFound}/>
+*/

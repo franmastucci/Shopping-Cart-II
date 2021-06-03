@@ -11,6 +11,7 @@
     "license": "ISC",
     "dependencies": {
         "bcrypt": "^5.0.1",
+        "body-parser": "^1.19.0",
         "cloudinary": "^1.25.2",
         "concurrently": "^6.2.0",
         "cookie-parser": "^1.4.5",
@@ -20,6 +21,7 @@
         "express-fileupload": "^1.2.1",
         "gitignore": "^0.6.0",
         "jsonwebtoken": "^8.5.1",
+        "mercadopago": "^1.5.7",
         "mongoose": "^5.12.12"
     },
     "devDependencies": {

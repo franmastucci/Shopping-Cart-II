@@ -64,6 +64,8 @@ function  Cart() {
         }
     }
 
+    
+
 
 
     if(cart.length === 0) 
@@ -101,7 +103,11 @@ function  Cart() {
 
             <div className="total">
                 <h3>Total: $ {total}</h3>
-                <Link to = "#!">Payment</Link>
+                <form action="http://localhost:3000/checkout" method = "POST">
+                    
+                    <input type="hidden" name =  "total" value = {total}/>
+                    <input type="submit" value = "PAGAR" className = "pay-button"/>
+                </form>
             </div>
         </div>
     )

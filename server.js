@@ -1,10 +1,18 @@
 require('dotenv').config()
+    //const path = require('path')
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const fileUpload = require('express-fileupload')
 const cookieParser = require('cookie-parser')
-    //const path = require('path')
+const bodyParser = require('body-parser')
+const mercadopago = require('mercadopago'); // SDK de Mercado Pago
+
+mercadopago.configure({
+    access_token: 'TEST-3071634864670083-060221-8cb9a74325a62ab88352121ef23fa581-35290695'
+}); // Agrega credenciales
+//public key :   TEST-857fce73-9556-41d3-8f7e-2390231207df
+
 
 
 const app = express()
@@ -15,12 +23,45 @@ app.use(fileUpload({
     useTempFiles: true
 }))
 
+//middleware
+app.use(bodyParser.urlencoded({ extended: false }))
+
 //routes
 
 app.use('/user', require('./routes/userRouter'))
 app.use('/api', require('./routes/categoryRouter'))
 app.use('/api', require('./routes/upload'))
 app.use('/api', require('./routes/productRouter'))
+
+app.post('/checkout', (req, res) => {
+    // Crea un objeto de preferencia
+    let preference = {
+        items: [{
+            title: 'Total al pagar:',
+            unit_price: parseInt(req.body.total),
+            quantity: 1,
+        }],
+        back_urls: {
+            "success": "http://localhost:3000",
+            "failure": "http://localhost:3000",
+            "pending": "http://localhost:3000"
+        },
+        auto_return: 'approved',
+    };
+
+    mercadopago.preferences.create(preference)
+        .then(function(response) {
+
+            res.redirect(response.body.init_point)
+                //    global.id = response.body.id;
+        }).catch(function(error) {
+            console.log(error);
+        });
+
+});
+
+
+
 
 // Connect to mongodb
 const URI = process.env.MONGODB_URL
