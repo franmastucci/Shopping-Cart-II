@@ -4,11 +4,58 @@ import {Link} from 'react-router-dom'
 import axios from 'axios'
 
 
+
 function  Cart() {
     const state = useContext(GlobalState)
     const [cart, setCart] = state.userAPI.cart
     const [token] = state.token
     const [total, setTotal] = useState(0)
+ 
+ 
+ 
+    const [title, setTitle] = useState(0)
+    const [quantity, setQuantity] = useState(0)
+    const [price, setPrice] = useState(0)
+
+
+    useEffect(() =>{
+        const getPrice= () =>{
+            const price = cart.reduce((prev, item) => {
+                return prev + (item.price)
+            },0)
+            
+            setPrice(price)
+        }
+        getPrice()
+        
+    },[cart])
+
+
+
+    useEffect(() =>{
+        const getQuantity= () =>{
+            const quantity = cart.reduce((prev, item) => {
+                return (item.quantity)
+            },0)
+            
+            setQuantity(quantity)
+        }
+        getQuantity()
+        
+    },[cart])
+
+    useEffect(() =>{
+        const getTitle= () =>{
+            const title = cart.reduce((prev, item) => {
+                return  (item.title)
+            },0)
+            
+            setTitle(title)
+        }
+        getTitle()
+        
+    },[cart])
+    
 
     useEffect(() =>{
         const getTotal = () =>{
@@ -104,9 +151,18 @@ function  Cart() {
             <div className="total">
                 <h3>Total: $ {total}</h3>
                 <form action="http://localhost:3000/checkout" method = "POST">
-                    
+                   
+                        
+                
+                    <div className="">
+                    <input type="hidden" name =  "title" value = {title + " x " + quantity}/>
                     <input type="hidden" name =  "total" value = {total}/>
-                    <input type="submit" value = "PAGAR" className = "pay-button"/>
+                    <input type="hidden" name =  "quantity" value = {quantity}/>
+                    </div>
+         
+                    <input type="submit" value = "COMPRAR" className = "pay-button" />
+               
+                
                 </form>
             </div>
         </div>
