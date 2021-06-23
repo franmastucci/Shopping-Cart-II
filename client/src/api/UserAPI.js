@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 
-const UserAPI = (token) => {
+function UserAPI(token) {
     const [isLogged, setIsLogged] = useState(false)
     const [isAdmin, setIsAdmin] = useState(false)
     const [cart, setCart] = useState([])
@@ -13,11 +13,12 @@ const UserAPI = (token) => {
                     const res = await axios.get('/user/infor', {
                         headers: {Authorization: token}
                     })
+
                     setIsLogged(true)
                     res.data.role === 1 ? setIsAdmin(true) : setIsAdmin(false)
-                    
+
                     setCart(res.data.cart)
-                    
+
                 } catch (err) {
                     alert(err.response.data.msg)
                 }
@@ -27,6 +28,8 @@ const UserAPI = (token) => {
             
         }
     },[token])
+
+    
 
     const addCart = async (product) => {
         if(!isLogged) return alert("Please login to continue buying")
@@ -48,12 +51,12 @@ const UserAPI = (token) => {
     }
 
     return {
-        isLogged:[isLogged, setIsLogged],
-        isAdmin:[isAdmin, setIsAdmin],
+        isLogged: [isLogged, setIsLogged],
+        isAdmin: [isAdmin, setIsAdmin],
         cart: [cart, setCart],
-        addCart: addCart
-
+        addCart: addCart,
+    
     }
 }
 
-export default UserAPI;
+export default UserAPI

@@ -28,17 +28,17 @@ if(detailProduct.length === 0) return null;
                 <div className="box-detail">
                     <div className="row">
                         <h2>{detailProduct.title}</h2>
-                        <h6># id: {detailProduct.product_id}</h6>
+                        
                     </div>
                     <span>${detailProduct.price}</span>
                     <p>{detailProduct.description}</p>
-                    <p>{detailProduct.content}</p>
-                    <p>{detailProduct.sold}</p>
+                    
+                   
                     <Link to = "/cart" className = "cart">Comprar</Link>
                 </div>
             </div>
                 <div>
-                    <h2>Related Products</h2>
+                    <h2>Productos Relacionados</h2>
                     <div className= "products">
                         {
                             products.map(product => {
@@ -54,3 +54,10 @@ if(detailProduct.length === 0) return null;
 }
 
 export default DetailProduct
+
+
+//<h6># id: {detailProduct.product_id}</h6>
+
+//<p>{detailProduct.content}</p>
+
+// <p>{detailProduct.sold}</p>

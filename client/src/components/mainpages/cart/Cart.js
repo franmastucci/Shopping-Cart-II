@@ -99,7 +99,7 @@ function  Cart() {
     }
 
     const removeProduct = id =>{
-        if(window.confirm("Do you want to delete this product?")){
+        if(window.confirm("seguro que querés borrar el producto?")){
             cart.forEach((item, index) => {
                 if(item._id === id){
                     cart.splice(index, 1)
@@ -116,7 +116,7 @@ function  Cart() {
 
 
     if(cart.length === 0) 
-        return <h2 style={{textAlign: "center", fontSize: "5rem"}}>Cart Empty</h2> 
+        return <h2 style={{textAlign: "center", fontSize: "2rem"}}>No hay productos agregados</h2> 
 
     return (
         <div>

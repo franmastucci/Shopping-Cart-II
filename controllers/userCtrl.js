@@ -104,31 +104,31 @@ const userCtrl = {
             return res.status(500).json({ msg: err.message })
         }
     },
-    addCart: async (req, res) =>{
+    addCart: async(req, res) => {
         try {
             const user = await Users.findById(req.user.id)
-            if(!user) return res.status(400).json({msg: "User does not exist."})
+            if (!user) return res.status(400).json({ msg: "User does not exist." })
 
-            await Users.findOneAndUpdate({_id: req.user.id}, {
+            await Users.findOneAndUpdate({ _id: req.user.id }, {
                 cart: req.body.cart
             })
 
-            return res.json({msg: "Added to cart"})
+            return res.json({ msg: "Added to cart" })
         } catch (err) {
-            return res.status(500).json({msg: err.message})
+            return res.status(500).json({ msg: err.message })
         }
     }
-    
-    
+
+
 
 }
 
 const createAccessToken = (user) => {
-    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1d' })
+    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '11m' }) //1d
 }
 
 const createRefreshToken = (user) => {
-    return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '7d' })
+    return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '1d' }) //7d
 }
 
 module.exports = userCtrl

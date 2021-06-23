@@ -15,16 +15,17 @@ const Header = () => {
 
     const logoutUser = async () =>{
         await axios.get('/user/logout')
-        localStorage.clear()
+        
+        localStorage.removeItem('firstLogin')
+        
         window.location.href = "/";
-
     }
 
     const adminRouter = () =>{
         return(
             <>
-                <li><Link to="/create_product">Create Product</Link></li>
-                <li><Link to="/category">Categories</Link></li>
+                <li><Link to="/create_product">Crear Producto</Link></li>
+                <li><Link to="/category">Categorias</Link></li>
             </>
         )
     }
@@ -32,11 +33,12 @@ const Header = () => {
     const loggedRouter = () =>{
         return(
             <>
-                
-                <li><Link to="/" onClick={logoutUser}>Logout</Link></li>
+                <li><Link to="/history"></Link></li>
+                <li><Link to="/" onClick={logoutUser}>Salir</Link></li>
             </>
         )
     }
+
 
 
     return (
@@ -47,16 +49,16 @@ const Header = () => {
             </div>
             <div className = "logo">
                 <h1>
-                <Link to="/">{isAdmin ? 'Admin' : 'Fran cart'}</Link>
+                <Link to="/">{isAdmin ? 'Administrador' : 'Fran cart'}</Link>
                 </h1>
             </div>
 
             <ul>
-                <li><Link to="/">{isAdmin ? 'Products' : 'comprar'}</Link></li>
+                <li><Link to="/">{isAdmin ? 'Productos' : 'productos'}</Link></li>
 
                 {isAdmin && adminRouter()}
                 {
-                    isLogged ? loggedRouter() : <li><Link to="/login">Login ✥ Register</Link></li>
+                    isLogged ? loggedRouter() : <li><Link to="/login">Entrar ✥ Registrarse</Link></li>
                 }
 
                 <li>
