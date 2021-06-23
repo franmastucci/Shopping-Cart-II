@@ -106,7 +106,6 @@ function CreateProduct() {
                 })
             }
             setCallback(!callback)
-
             
         } catch (err) {
             alert(err.response.data.msg)

@@ -1,0 +1,10 @@
+footer {
+    max-width: 100%;
+    background: #555;
+    text-align: end;
+    padding: 1px;
+}
+
+footer span {
+    color: white;
+}
