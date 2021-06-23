@@ -6,6 +6,7 @@
  const fileUpload = require('express-fileupload')
  const cookieParser = require('cookie-parser')
  const bodyParser = require('body-parser')
+ const path = require('path')
  const mercadopago = require('mercadopago'); // SDK de Mercado Pago
 
  mercadopago.configure({
@@ -84,8 +85,13 @@
      console.log('Connected to MongoDB')
  })
 
-
-
+// deploy
+ if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('client/build'))
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+    })
+}
 
 
  const PORT = process.env.PORT || 5000

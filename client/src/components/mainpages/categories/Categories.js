@@ -4,12 +4,12 @@ import axios from 'axios';
 
 function Categories() {
     const state = useContext(GlobalState)
-    const [categories, setCategories] = state.categoriesAPI.categories
+    const [categories] = state.categoriesAPI.categories
     const [category, setCategory] = useState('')
     const [token] = state.token
     const [callback, setCallback] = state.categoriesAPI.callback
     const [onEdit, setOnEdit] = useState(false)
-    const [id, setID] = useState('')
+    const [id] = useState('')
 
     const createCategory = async e =>{
         e.preventDefault()
@@ -34,12 +34,6 @@ function Categories() {
         }
     }
 
-
-    const editCategory = async (id, name) =>{
-        setID(id)
-        setCategory(name)
-        setOnEdit(true)
-    }
 
     const deleteCategory = async id =>{
         try {

@@ -1,6 +1,5 @@
 import React, {useContext, useState, useEffect} from 'react'
 import {GlobalState} from '../../../GlobalState'
-import {Link} from 'react-router-dom'
 import axios from 'axios'
 
 
@@ -147,15 +146,15 @@ function  Cart() {
                     </div>
                 ))
             }
-            <span className = "whatsapp_label">AVISANOS DE TU COMPRA <p>     👉</p> </span>
+            <span className = "whatsapp_label">AVISANOS DE TU COMPRA <p> <span role = "img" aria-label = "">👉</span> </p> </span>
             <a
                 href="https://wa.me/2348100000000"
-                class="whatsapp_float"
+                className="whatsapp_float"
                 target="_blank"
                 rel="noopener noreferrer"
             >
                 
-                <i class="fa fa-whatsapp whatsapp-icon"></i>
+                <i className="fa fa-whatsapp whatsapp-icon"></i>
             </a>
 
             <div className="total">
