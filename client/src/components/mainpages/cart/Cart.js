@@ -146,7 +146,6 @@ function  Cart() {
                     </div>
                 ))
             }
-            <span className = "whatsapp_label">AVISANOS DE TU COMPRA <p> <span role = "img" aria-label = "">👉</span> </p> </span>
             <a
                 href="https://wa.me/2348100000000"
                 className="whatsapp_float"

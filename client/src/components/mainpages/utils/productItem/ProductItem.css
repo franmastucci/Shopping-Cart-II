@@ -8,6 +8,12 @@
     position: relative;
 }
 
+@media (max-width: 655px) {
+    .product_card {
+        margin-left: 10px;
+    }
+}
+
 .product_card img {
     width: 100%;
     height: 300px;
